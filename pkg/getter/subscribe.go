@@ -6,8 +6,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/Sansui233/proxypool/pkg/proxy"
-	"github.com/Sansui233/proxypool/pkg/tool"
+	"github.com/13263955567/proxypool/pkg/proxy"
+	"github.com/13263955567/proxypool/pkg/tool"
 )
 
 // Add key value pair to creatorMap(string → creator) in base.go
