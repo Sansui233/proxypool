@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"strconv"
 
-	"github.com/Sansui233/proxypool/pkg/proxy"
+	"github.com/13263955567/proxypool/pkg/proxy"
 )
 
 type SSSub struct {
