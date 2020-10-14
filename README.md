@@ -5,14 +5,14 @@
 <h5 align="center">自动抓取tg频道、订阅地址、公开互联网上的ss、ssr、vmess、trojan节点信息，聚合去重测试可用性后提供节点列表</h5>
 
 <p align="center">
-  <a href="https://github.com/Sansui233/proxypool/actions">
-    <img src="https://img.shields.io/github/workflow/status/Sansui233/proxypool/Go?style=flat-square" alt="Github Actions">
+  <a href="github.com/13263955567/proxypool/actions">
+    <img src="https://img.shields.io/github/workflow/status/13263955567/proxypool/Go?style=flat-square" alt="Github Actions">
   </a>
-  <a href="https://goreportcard.com/report/github.com/Sansui233/proxypool">
+  <a href="https://goreportcard.com/report/github.com/13263955567/proxypool">
     <img src="https://goreportcard.com/badge/github.com/Sansui233/proxypool?style=flat-square">
   </a>
-  <a href="https://github.com/Sansui233/proxypool/releases">
-    <img src="https://img.shields.io/github/release/Sansui233/proxypool/all.svg?style=flat-square">
+  <a href="github.com/13263955567/proxypool/releases">
+    <img src="https://img.shields.io/github/release/13263955567/proxypool/all.svg?style=flat-square">
   </a>
 </p>
 
@@ -74,7 +74,7 @@ make
 ### 使用docker
 
 ```sh
-docker pull docker.pkg.github.com/Sansui233/proxypool/proxypool:latest
+docker pull docker.pkg.github.com/13263955567/proxypool/proxypool:latest
 ```
 
 ## 使用
