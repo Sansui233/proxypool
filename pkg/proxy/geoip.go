@@ -9,7 +9,7 @@ import (
 	"os"
 
 	"github.com/oschwald/geoip2-golang"
-	bingeoip "github.com/Sansui233/proxypool/internal/bindata/geoip"
+	bingeoip "github.com/13263955567/proxypool/internal/bindata/geoip"
 )
 
 var geoIp GeoIP
