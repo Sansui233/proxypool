@@ -1,5 +1,5 @@
 # your domain
-domain: proxypoolss.herokuapp.com
+domain: alexproxy001.herokuapp.com
 #domain: 127.0.0.1
 
 # database dsn(postgresql)
@@ -15,4 +15,4 @@ source-files:
   # use local file
   - ./config/source.yaml
   # use web file
-#  - https://proxypoolss.herokuapp.com/config/source.yaml
+#  - https://alexproxy001.herokuapp.com/config/source.yaml
