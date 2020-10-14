@@ -40,6 +40,21 @@
 - type: subscribe
   options:
     url: https://raw.githubusercontent.com/umelabs/node.umelabs.dev/master/Subscribe/v2ray.md
+- type: subscribe
+  options:
+    url: https://rss.cnrss.xyz/link/RRbIrEn90XWdWQl5?mu=2
+- type: subscribe
+  options:
+    url: https://s.sublank.xyz/subscribe/42207/AFTzQlTeksG/ssr/
+- type: subscribe
+  options:
+    url: https://rss-node.com/link/vv0Ue59uVLHp1nfX?mu=1
+- type: subscribe
+  options:
+    url: https://s.sublank.xyz/subscribe/43574/srCJLB2XwWl/ssr/
+- type: subscribe
+  options:
+    url: https://rss-node.com/link/FYw5RxXkHrRZdUAb?mu=1
 
 # 网页模糊抓取
 - type: webfuzz
