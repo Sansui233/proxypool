@@ -5,10 +5,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Sansui233/proxypool/internal/cache"
-	"github.com/Sansui233/proxypool/internal/database"
-	"github.com/Sansui233/proxypool/pkg/provider"
-	"github.com/Sansui233/proxypool/pkg/proxy"
+	"github.com/13263955567/proxypool/internal/cache"
+	"github.com/13263955567/proxypool/internal/database"
+	"github.com/13263955567/proxypool/pkg/provider"
+	"github.com/13263955567/proxypool/pkg/proxy"
 )
 
 var location, _ = time.LoadLocation("PRC")
