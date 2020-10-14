@@ -4,7 +4,7 @@ import (
 	"runtime"
 
 	"github.com/jasonlvhit/gocron"
-	"github.com/Sansui233/proxypool/internal/app"
+	"github.com/13263955567/proxypool/internal/app"
 )
 
 func Cron() {
