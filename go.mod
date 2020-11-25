@@ -15,14 +15,12 @@ require (
 	github.com/ghodss/yaml v1.0.0
 	github.com/gin-contrib/cache v1.1.0
 	github.com/gin-gonic/gin v1.6.3
-	github.com/go-bindata/go-bindata v1.0.0 // indirect
 	github.com/go-playground/validator/v10 v10.3.0 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/gocolly/colly v1.2.0
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/heroku/x v0.0.25
 	github.com/ivpusic/grpool v1.0.0
-	github.com/jackc/pgproto3/v2 v2.0.4 // indirect
 	github.com/jasonlvhit/gocron v0.0.1
 	github.com/json-iterator/go v1.1.10 // indirect
 	github.com/kennygrant/sanitize v1.2.4 // indirect
@@ -41,6 +39,6 @@ require (
 	google.golang.org/protobuf v1.25.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 	gopkg.in/sourcemap.v1 v1.0.5 // indirect
-	gorm.io/driver/postgres v1.0.0
-	gorm.io/gorm v1.20.0
+	gorm.io/driver/postgres v1.0.5
+	gorm.io/gorm v1.20.4
 )
