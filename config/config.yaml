@@ -1,13 +1,13 @@
 # your domain
-domain: example.com
-port:                 # default 12580
+domain: freefq.ga
+port: 12580                # default 12580
 
 # source list file
 source-files:
   # use local file
   - ./config/source.yaml
   # use web file
-  # - https://example.com/config/source.yaml
+  # - https://freefq/config/source.yaml
 
 # ======= 可选项，留空使用default值  =======
 
