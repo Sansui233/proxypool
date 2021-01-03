@@ -7,6 +7,11 @@
 - type: subscribe
   options:
     url: https://raw.githubusercontent.com/ssrsub/ssr/master/v2ray
+    
+# 订阅链接
+- type: subscribe
+  options:
+    url: https://raw.githubusercontent.com/freefq/free/master/v2
 
 # 网页模糊抓取
 - type: webfuzz
