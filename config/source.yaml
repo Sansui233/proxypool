@@ -13,6 +13,25 @@
   options:
     url: https://raw.githubusercontent.com/freefq/free/master/v2
 
+# 订阅链接
+- type: clash
+  options:
+    url: https://suo.yt/pwH09is
+# 订阅链接
+- type: subscribe
+  options:
+    url: https://suo.yt/R6B3O7c
+# 订阅链接
+- type: subscribe
+  options:
+    url: https://bigairport.icu/api/v1/client/subscribe?token=7405c4f810cfd0787e1f0319ceca17ba
+# 订阅链接
+- type: subscribe
+  options:
+    url: https://suo.yt/svNO2vQ
+    
+    
+    
 # 网页模糊抓取
 - type: webfuzz
   options:
