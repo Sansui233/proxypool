@@ -47,7 +47,10 @@
 - type: webfuzz
   options:
     url: https://merlinblog.xyz/wiki/freess.html
-
+# 网页模糊抓取
+- type: webfuzz
+  options:
+    url: https://free.v2x-nav.ml/
 # tg频道抓取
 - type: tgchannel
   options:
