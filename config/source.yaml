@@ -24,6 +24,11 @@
 # 订阅链接
 - type: subscribe
   options:
+    url: https://www.cxkv2.xyz/link/MG82HFZoTlURflnL?mu=2
+
+# 订阅链接
+- type: subscribe
+  options:
     url: https://bigairport.icu/api/v1/client/subscribe?token=7405c4f810cfd0787e1f0319ceca17ba
 # 订阅链接
 - type: subscribe
