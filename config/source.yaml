@@ -39,8 +39,10 @@
 - type: subscribe
   options:
     url: https://rss.cnrss.xyz/link/szoQrsQkxUtybp5m?mu=2
-
-    
+# 订阅链接
+- type: subscribe
+  options:
+    url: http://proxypool.turinglabs.net/upload/daily/v2ray
 # 网页模糊抓取
 - type: webfuzz
   options:
