@@ -16,29 +16,14 @@
 # 订阅链接
 - type: clash
   options:
-    url: https://suo.yt/pwH09is
+    url: https://suo.yt/VUIZ7i0
+    
 # 订阅链接
 - type: subscribe
   options:
-    url: https://suo.yt/R6B3O7c
-# 订阅链接
-- type: subscribe
-  options:
-    url: https://www.cxkv2.xyz/link/MG82HFZoTlURflnL?mu=2
+    url: https://sub.qaq.wtf/
 
-# 订阅链接
-- type: subscribe
-  options:
-    url: https://bigairport.icu/api/v1/client/subscribe?token=7405c4f810cfd0787e1f0319ceca17ba
-# 订阅链接
-- type: subscribe
-  options:
-    url: https://suo.yt/svNO2vQ
 
-# 订阅链接
-- type: subscribe
-  options:
-    url: https://rss.cnrss.xyz/link/szoQrsQkxUtybp5m?mu=2
 # 订阅链接
 - type: subscribe
   options:
@@ -71,7 +56,12 @@
 # clash格式订阅链接
 - type: clash
   options:
-    url: https://proxypoolss.tk/clash/config
+    url: https://proxypoolss.tk/clash/proxies?c=CN,HK,TW,SG,JP,US&speed=15,30&type=ss,vmess,ssr,trojan
+
+# clash格式订阅链接
+- type: clash
+  options:
+    url: https://proxypool.ga/clash/proxies?type=ss,ssr,vmess
  
 # 某个网站抓取
 - type: web-freessrxyz
