@@ -70,12 +70,12 @@
 # clash格式订阅链接
 - type: clash
   options:
-    url: https://proxypoolss.tk/clash/proxies?c=CN,HK,TW,SG,JP,US&speed=15,30&type=ss,vmess,ssr,trojan
+    url: https://proxypoolss.tk/clash/proxies?c=AT,CN,IN,HK,JP,NL,RU,SG,TW,US&speed=15,30&type=ss,ssr,vmess,trojan
 
 # clash格式订阅链接
 - type: clash
   options:
-    url: https://proxypool.ga/clash/proxies?type=ss,vmess
+    url: https://proxypool.ga/clash/proxies?type=ss,vmess,ssr,trojan
  
 # 某个网站抓取
 - type: web-freessrxyz
