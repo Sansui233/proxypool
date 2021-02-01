@@ -12,6 +12,15 @@
 - type: subscribe
   options:
     url: https://raw.githubusercontent.com/freefq/free/master/v2
+    
+# 订阅链接
+- type: subscribe
+  options:
+    url: https://raw.githubusercontent.com/freefq/free/master/ssr
+# 订阅链接
+- type: subscribe
+  options:
+    url: https://iwxf.netlify.app
 
 # 订阅链接
 - type: clash
@@ -32,6 +41,11 @@
 - type: webfuzz
   options:
     url: https://merlinblog.xyz/wiki/freess.html
+# 网页模糊抓取
+- type: webfuzz
+  options:
+    url: https://winxray.com/%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9
+    
 # 网页模糊抓取
 - type: webfuzz
   options:
@@ -61,7 +75,7 @@
 # clash格式订阅链接
 - type: clash
   options:
-    url: https://proxypool.ga/clash/proxies?type=ss,ssr,vmess
+    url: https://proxypool.ga/clash/proxies?type=ss,vmess
  
 # 某个网站抓取
 - type: web-freessrxyz
