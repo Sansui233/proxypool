@@ -1,5 +1,5 @@
 # your domain
-domain: poolproxy.herokuapp.com
+domain: proxypoolv2.herokuapp.com
 port: 12580                # default 12580
 
 # source list file
