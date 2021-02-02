@@ -16,7 +16,17 @@
 # 订阅链接
 - type: subscribe
   options:
+    url: https://losadhwselfff2332dasd.xyz/link/llArk3e7tOMMFh8A?sub=1
+    
+# 订阅链接
+- type: subscribe
+  options:
     url: https://raw.githubusercontent.com/freefq/free/master/ssr
+# 订阅链接
+- type: subscribe
+  options:
+    url: https://link.coolgay.icu/link/0Ylei6p2f4QgpLbE?sub=1&extend=1
+
 # 订阅链接
 - type: subscribe
   options:
@@ -37,6 +47,7 @@
 - type: subscribe
   options:
     url: http://proxypool.turinglabs.net/upload/daily/v2ray
+    
 # 网页模糊抓取
 - type: webfuzz
   options:
