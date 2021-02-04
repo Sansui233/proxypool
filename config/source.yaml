@@ -81,7 +81,27 @@
 # clash格式订阅链接
 - type: clash
   options:
-    url: https://proxypoolss.tk/clash/proxies?c=AT,CN,IN,HK,JP,NL,RU,SG,TW,US&speed=15,30&type=ss,ssr,vmess,trojan
+    url: https://proxypoolss.tk/clash/proxies?speed=15,30&type=ss,ssr,vmess,trojan
+    
+# clash格式订阅链接
+- type: clash
+  options:
+    url: https://suo.yt/3JY7ajS
+    
+    
+# 订阅链接
+- type: subscribe
+  options:
+    url: https://suo.yt/FCm78h8
+    
+# 订阅链接
+- type: subscribe
+  options:
+    url: https://sspool.herokuapp.com/trojan/sub
+# clash格式订阅链接
+- type: clash
+  options:
+    url: https://suo.yt/eIBexxY
 
 # clash格式订阅链接
 - type: clash
