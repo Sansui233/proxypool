@@ -105,7 +105,8 @@
 # 订阅链接
 - type: subscribe
   options:
-    url: https://sspool.herokuapp.com/trojan/sub
+    url: https://proxypoolsstest.herokuapp.com/trojan/sub
+
 # clash格式订阅链接
 - type: clash
   options:
