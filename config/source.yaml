@@ -23,6 +23,11 @@
 - type: web-fanqiangdang
   options:
     url: https://fanqiangdang.com/forum-48-1.html
+    
+# 翻墙党论坛抓取1
+- type: web-fanqiangdang1
+  options:
+    url: https://fanqiangdang.com/forum-48-1.html
 
 # clash格式订阅链接
 - type: clash
