@@ -7,6 +7,11 @@
 - type: subscribe
   options:
     url: https://raw.githubusercontent.com/ssrsub/ssr/master/v2ray
+    
+# 订阅链接1
+- type: subscribe1
+  options:
+    url: https://dlj.tf/mzhgDZP
 
 # 网页模糊抓取
 - type: webfuzz
