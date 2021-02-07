@@ -25,12 +25,12 @@
     url: https://fanqiangdang.com/forum-48-1.html
     
 # 翻墙党论坛抓取1
-- type: web-fanqiangdang
+- type: web-fanqiangdang1
   options:
     url: https://fanqiangdang.com/forum-51-1.html
     
 # v2ray免费账号/节点（长期更新）
-- type: webfuzz
+- type: webfuzz1
   options:
     url: https://github.com/Alvin9999/new-pac/wiki/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7 
 
