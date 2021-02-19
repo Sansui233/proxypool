@@ -29,4 +29,4 @@ jobs:
           push: true
           platforms: linux/amd64
           context: .
-          tags: ghcr.io/sansui233/proxypool/proxypool:latest
+          tags: ghcr.io/sansui233/proxypool:v0.6.0
