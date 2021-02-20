@@ -13,18 +13,6 @@
   options:
     url: https://raw.githubusercontent.com/freefq/free/master/v2
     
-# 订阅链接
-- type: subscribe
-  options:
-    url: https://losadhwselfff2332dasd.xyz/link/BqD7MpaLWs6bOuu5?sub=1
-# 订阅链接
-- type: subscribe
-  options:
-    url: https://losadhwselfff2332dasd.xyz/link/5iN7vx435cwhpAV2?sub=1
-# 订阅链接
-- type: subscribe
-  options:
-    url: https://losadhwselfff2332dasd.xyz/link/llArk3e7tOMMFh8A?sub=1
     
 # 订阅链接
 - type: subscribe
@@ -33,7 +21,7 @@
 # 订阅链接
 - type: subscribe
   options:
-    url: https://link.coolgay.icu/link/0Ylei6p2f4QgpLbE?sub=1&extend=1
+    url: https://api.aws-global.workers.dev/link/Rkgkf2UWsV3twJBC?sub=3&extend=1
 
 # 订阅链接
 - type: subscribe
@@ -43,7 +31,7 @@
 # 订阅链接
 - type: clash
   options:
-    url: https://suo.yt/VUIZ7i0
+    url: https://suo.yt/NSbhNuU
     
 # 订阅链接
 - type: subscribe
@@ -115,7 +103,7 @@
 # clash格式订阅链接
 - type: clash
   options:
-    url: https://proxypool.ga/clash/proxies?type=ss,vmess,ssr,trojan
+    url: https://sspool.herokuapp.com/clash/proxies
  
 # 某个网站抓取
 - type: web-freessrxyz
