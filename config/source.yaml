@@ -38,16 +38,20 @@
 - type: web-fanqiangdang
   options:
     url: https://fanqiangdang.com/forum-51-1.html
+# 翻墙党论坛抓取2
+- type: web-fanqiangdang
+  options:
+    url: https://fanqiangdang.com/forum-36-1.html
     
 # v2ray免费账号/节点（长期更新）
-- type: webfuzz
+- type: web-fanqiangdang
   options:
     url: https://github.com/Alvin9999/new-pac/wiki/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7
     
 # 本站提供免费SS，SSR等免费节点
-- type: webfuzz
+- type: web-fanqiangdang
   options:
-    url: https://zfjvpn.gitbook.io/123
+    url: https://zfjvpn.gitbook.io/123/
 
 # clash格式订阅链接
 - type: clash
