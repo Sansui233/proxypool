@@ -8,6 +8,16 @@
   options:
     url: https://raw.githubusercontent.com/ssrsub/ssr/master/v2ray
     
+# 订阅链接1
+- type: subscribe
+  options:
+    url: https://raw.githubusercontent.com/cdp2020/v2ray/master/README.md
+    
+# 订阅链接2
+- type: subscribe
+  options:
+    url: https://raw.githubusercontent.com/coolapijust/cxkv2-/main/README.md
+    
 # 网页模糊抓取
 - type: webfuzz
   options:
@@ -32,7 +42,12 @@
 # v2ray免费账号/节点（长期更新）
 - type: webfuzz
   options:
-    url: https://github.com/Alvin9999/new-pac/wiki/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7 
+    url: https://github.com/Alvin9999/new-pac/wiki/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7
+    
+# 本站提供免费SS，SSR等免费节点
+- type: webfuzz
+  options:
+    url: https://zfjvpn.gitbook.io/123/
 
 # clash格式订阅链接
 - type: clash
