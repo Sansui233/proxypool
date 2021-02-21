@@ -48,11 +48,6 @@
   options:
     url: https://github.com/Alvin9999/new-pac/wiki/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7
     
-# 本站提供免费SS，SSR等免费节点
-- type: web-fanqiangdang
-  options:
-    url: https://zfjvpn.gitbook.io/123/
-
 # clash格式订阅链接
 - type: clash
   options:
