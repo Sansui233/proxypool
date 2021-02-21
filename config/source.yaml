@@ -47,7 +47,7 @@
 # 本站提供免费SS，SSR等免费节点
 - type: webfuzz
   options:
-    url: https://zfjvpn.gitbook.io/123/
+    url: https://zfjvpn.gitbook.io/123
 
 # clash格式订阅链接
 - type: clash
