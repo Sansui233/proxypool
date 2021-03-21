@@ -8,10 +8,35 @@
   options:
     url: https://raw.githubusercontent.com/ssrsub/ssr/master/v2ray
 
+# 订阅链接1
+- type: subscribe
+  options:
+    url: https://raw.githubusercontent.com/learnhard-cn/free_proxy_ss/main/v2ray/proxy.txt   
+
+# 订阅链接2
+- type: subscribe
+  options:
+    url: https://jiang.netlify.app
+
+# 订阅链接3
+- type: subscribe
+  options:
+    url: https://telegram-kkv2r-d320.netlify.app
+
+# 订阅链接4
+- type: subscribe
+  options:
+    url: https://raw.githubusercontent.com/freefq/free/master/v2
+
 # 网页模糊抓取
 - type: webfuzz
   options:
     url: https://merlinblog.xyz/wiki/freess.html
+
+# 网页模糊抓取1
+- type: webfuzz
+  options:
+    url: https://github.com/Alvin9999/new-pac/wiki/v2ray%E5%85%8D%E8%B4%B9%E8%B4%A6%E5%8F%B7
 
 # tg频道抓取
 - type: tgchannel
@@ -23,6 +48,16 @@
 - type: web-fanqiangdang
   options:
     url: https://fanqiangdang.com/forum-48-1.html
+
+# 翻墙党论坛抓取1
+- type: web-fanqiangdang
+  options:
+    url: https://fanqiangdang.com/forum-51-1.html
+
+# 翻墙党论坛抓取2
+- type: web-fanqiangdang
+  options:
+    url: https://fanqiangdang.com/forum-36-1.html
 
 # clash格式订阅链接
 - type: clash
