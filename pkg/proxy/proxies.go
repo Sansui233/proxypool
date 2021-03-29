@@ -66,10 +66,18 @@ func (ps ProxyList) Sort() ProxyList {
 	return ps
 }
 
-func (ps ProxyList) NameSetCounrty() ProxyList {
+func (ps ProxyList) NameClear() ProxyList {
 	num := len(ps)
 	for i := 0; i < num; i++ {
-		ps[i].SetName(ps[i].BaseInfo().Country)
+		ps[i].SetName("")
+	}
+	return ps
+}
+
+func (ps ProxyList) NameAddCounrty() ProxyList {
+	num := len(ps)
+	for i := 0; i < num; i++ {
+		ps[i].SetName(ps[i].BaseInfo().Name + ps[i].BaseInfo().Country)
 	}
 	return ps
 }

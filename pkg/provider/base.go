@@ -21,6 +21,7 @@ type Base struct {
 	Country    string           `yaml:"country"`
 	NotCountry string           `yaml:"not_country"`
 	Speed      string           `yaml:"speed"`
+	Filter     string           `yaml:"filter"`
 }
 
 // 根据子类的的Provide()传入的信息筛选节点，结果会改变传入的proxylist。
@@ -37,6 +38,7 @@ func (b *Base) preFilter() {
 	needFilterCountry := true
 	needFilterNotCountry := true
 	needFilterSpeed := true
+	needFilterFilter := true
 	if b.Types == "" || b.Types == "all" {
 		needFilterType = false
 	}
@@ -48,6 +50,9 @@ func (b *Base) preFilter() {
 	}
 	if b.Speed == "" {
 		needFilterSpeed = true
+	}
+	if b.Filter == "" {
+		needFilterFilter = false
 	}
 	types := strings.Split(b.Types, ",")
 	countries := strings.Split(b.Country, ",")
@@ -94,7 +99,23 @@ func (b *Base) preFilter() {
 			}
 		}
 
-		if needFilterSpeed && len(healthcheck.ProxyStats) != 0 {
+		if needFilterFilter {
+			if b.Filter == "1" {
+				if !strings.Contains(p.BaseInfo().Name, "Relay") {
+					goto exclude
+				}
+			} else if b.Filter == "2" {
+				if !strings.Contains(p.BaseInfo().Name, "Pool") {
+					goto exclude
+				}
+			} else if b.Filter == "3" {
+				if !strings.Contains(p.BaseInfo().Name, "Pool") && !strings.Contains(p.BaseInfo().Name, "Relay") {
+					goto exclude
+				}
+			}
+		}
+
+		if needFilterSpeed && len(healthcheck.ProxyStats) != 0 && healthcheck.SpeedExist {
 			if ps, ok := healthcheck.ProxyStats.Find(p); ok {
 				if ps.Speed != 0 {
 					// clear history speed tag

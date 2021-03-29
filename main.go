@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"github.com/Sansui233/proxypool/pkg/geoIp"
 	_ "net/http/pprof"
 	"os"
 
@@ -10,7 +11,6 @@ import (
 	"github.com/Sansui233/proxypool/internal/cron"
 	"github.com/Sansui233/proxypool/internal/database"
 	"github.com/Sansui233/proxypool/log"
-	"github.com/Sansui233/proxypool/pkg/proxy"
 )
 
 var configFilePath = ""
@@ -44,7 +44,7 @@ func main() {
 	database.InitTables()
 	// init GeoIp db reader and map between emoji's and countries
 	// return: struct geoIp (dbreader, emojimap)
-	err = proxy.InitGeoIpDB()
+	err = geoIp.InitGeoIpDB()
 	if err != nil {
 		os.Exit(1)
 	}

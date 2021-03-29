@@ -81,12 +81,13 @@ dsn := "user=proxypool password=proxypool dbname=proxypool port=5432 sslmode=dis
 
 ## Health Check
 
-分为延迟测试与测速（带宽测试）。
+分为延迟测试、测速（带宽测试）与中转检测。
 
 延迟测试用于筛选掉无效的节点。
 
 已经重写测速。单线程测速，失败请求3次。需要在配置文件中依据带宽调整connection与timeout。不同的网络环境下测速结果可能有着巨大的差别。
 
+中转检测完全根据原作者频道里的说明来写的。带Relay的是中转，Pool是出入口同一网段。不过设定的“同一网段”的子网掩码是前24位为1，超出此范围的Pool可能会误判断成Relay。但99%的情况没问题。
 
 ## Web界面
 

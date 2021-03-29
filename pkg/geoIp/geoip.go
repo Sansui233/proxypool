@@ -1,4 +1,4 @@
-package proxy
+package geoIp
 
 import (
 	"encoding/json"
@@ -12,7 +12,7 @@ import (
 	"github.com/oschwald/geoip2-golang"
 )
 
-var geoIp GeoIP
+var GeoIpDB GeoIP
 
 func InitGeoIpDB() error {
 	geodb := "assets/GeoLite2-City.mmdb"
@@ -30,9 +30,9 @@ func InitGeoIpDB() error {
 			panic(err)
 			return err
 		}
-		geoIp = NewGeoIP("assets/GeoLite2-City.mmdb", "assets/flags.json")
+		GeoIpDB = NewGeoIP("assets/GeoLite2-City.mmdb", "assets/flags.json")
 	}
-	geoIp = NewGeoIP("assets/GeoLite2-City.mmdb", "assets/flags.json")
+	GeoIpDB = NewGeoIP("assets/GeoLite2-City.mmdb", "assets/flags.json")
 	return nil
 }
 
@@ -97,13 +97,13 @@ func (g GeoIP) Find(ipORdomain string) (ip, country string, err error) {
 	}
 	countryIsoCode := record.Country.IsoCode
 	if countryIsoCode == "" {
-		country = fmt.Sprintf("🏁 ZZ")
+		country = fmt.Sprintf("🏁ZZ")
 	}
 	emoji, found := g.emojiMap[countryIsoCode]
 	if found {
-		country = fmt.Sprintf("%v %v", emoji, countryIsoCode)
+		country = fmt.Sprintf("%v%v", emoji, countryIsoCode)
 	} else {
-		country = fmt.Sprintf("🏁 ZZ")
+		country = fmt.Sprintf("🏁ZZ")
 	}
 	return
 }

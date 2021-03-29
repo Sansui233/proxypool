@@ -19,7 +19,7 @@ import (
 	_ "github.com/heroku/x/hmetrics/onload"
 )
 
-const version = "v0.5.3"
+const version = "v0.6.1"
 
 var router *gin.Engine
 
@@ -97,8 +97,9 @@ func setupRouter() {
 		proxyCountry := c.DefaultQuery("c", "")
 		proxyNotCountry := c.DefaultQuery("nc", "")
 		proxySpeed := c.DefaultQuery("speed", "")
+		proxyFilter := c.DefaultQuery("filter", "")
 		text := ""
-		if proxyTypes == "" && proxyCountry == "" && proxyNotCountry == "" && proxySpeed == "" {
+		if proxyTypes == "" && proxyCountry == "" && proxyNotCountry == "" && proxySpeed == "" && proxyFilter == "" {
 			text = appcache.GetString("clashproxies") // A string. To show speed in this if condition, this must be updated after speedtest
 			if text == "" {
 				proxies := appcache.GetProxies("proxies")
@@ -119,6 +120,7 @@ func setupRouter() {
 					Country:    proxyCountry,
 					NotCountry: proxyNotCountry,
 					Speed:      proxySpeed,
+					Filter:     proxyFilter,
 				},
 			}
 			text = clash.Provide() // 根据Query筛选节点
@@ -131,6 +133,7 @@ func setupRouter() {
 					Country:    proxyCountry,
 					NotCountry: proxyNotCountry,
 					Speed:      proxySpeed,
+					Filter:     proxyFilter,
 				},
 			}
 			text = clash.Provide() // 根据Query筛选节点
@@ -142,6 +145,7 @@ func setupRouter() {
 		proxyCountry := c.DefaultQuery("c", "")
 		proxyNotCountry := c.DefaultQuery("nc", "")
 		proxySpeed := c.DefaultQuery("speed", "")
+		proxyFilter := c.DefaultQuery("filter", "")
 		text := ""
 		if proxyTypes == "" && proxyCountry == "" && proxyNotCountry == "" && proxySpeed == "" {
 			text = appcache.GetString("surgeproxies") // A string. To show speed in this if condition, this must be updated after speedtest
@@ -164,6 +168,7 @@ func setupRouter() {
 					Country:    proxyCountry,
 					NotCountry: proxyNotCountry,
 					Speed:      proxySpeed,
+					Filter:     proxyFilter,
 				},
 			}
 			text = surge.Provide()
@@ -175,6 +180,7 @@ func setupRouter() {
 					Types:      proxyTypes,
 					Country:    proxyCountry,
 					NotCountry: proxyNotCountry,
+					Filter:     proxyFilter,
 				},
 			}
 			text = surge.Provide()
@@ -183,51 +189,91 @@ func setupRouter() {
 	})
 
 	router.GET("/ss/sub", func(c *gin.Context) {
+		proxyCountry := c.DefaultQuery("c", "")
+		proxyNotCountry := c.DefaultQuery("nc", "")
+		proxySpeed := c.DefaultQuery("speed", "")
+		proxyFilter := c.DefaultQuery("filter", "")
 		proxies := appcache.GetProxies("proxies")
 		ssSub := provider.SSSub{
 			Base: provider.Base{
-				Proxies: &proxies,
-				Types:   "ss",
+				Proxies:    &proxies,
+				Types:      "ss",
+				Country:    proxyCountry,
+				NotCountry: proxyNotCountry,
+				Speed:      proxySpeed,
+				Filter:     proxyFilter,
 			},
 		}
 		c.String(200, ssSub.Provide())
 	})
 	router.GET("/ssr/sub", func(c *gin.Context) {
+		proxyCountry := c.DefaultQuery("c", "")
+		proxyNotCountry := c.DefaultQuery("nc", "")
+		proxySpeed := c.DefaultQuery("speed", "")
+		proxyFilter := c.DefaultQuery("filter", "")
 		proxies := appcache.GetProxies("proxies")
 		ssrSub := provider.SSRSub{
 			Base: provider.Base{
-				Proxies: &proxies,
-				Types:   "ssr",
+				Proxies:    &proxies,
+				Types:      "ssr",
+				Country:    proxyCountry,
+				NotCountry: proxyNotCountry,
+				Speed:      proxySpeed,
+				Filter:     proxyFilter,
 			},
 		}
 		c.String(200, ssrSub.Provide())
 	})
 	router.GET("/vmess/sub", func(c *gin.Context) {
+		proxyCountry := c.DefaultQuery("c", "")
+		proxyNotCountry := c.DefaultQuery("nc", "")
+		proxySpeed := c.DefaultQuery("speed", "")
+		proxyFilter := c.DefaultQuery("filter", "")
 		proxies := appcache.GetProxies("proxies")
 		vmessSub := provider.VmessSub{
 			Base: provider.Base{
-				Proxies: &proxies,
-				Types:   "vmess",
+				Proxies:    &proxies,
+				Types:      "vmess",
+				Country:    proxyCountry,
+				NotCountry: proxyNotCountry,
+				Speed:      proxySpeed,
+				Filter:     proxyFilter,
 			},
 		}
 		c.String(200, vmessSub.Provide())
 	})
 	router.GET("/sip002/sub", func(c *gin.Context) {
+		proxyCountry := c.DefaultQuery("c", "")
+		proxyNotCountry := c.DefaultQuery("nc", "")
+		proxySpeed := c.DefaultQuery("speed", "")
+		proxyFilter := c.DefaultQuery("filter", "")
 		proxies := appcache.GetProxies("proxies")
 		sip002Sub := provider.SIP002Sub{
 			Base: provider.Base{
-				Proxies: &proxies,
-				Types:   "ss",
+				Proxies:    &proxies,
+				Types:      "ss",
+				Country:    proxyCountry,
+				NotCountry: proxyNotCountry,
+				Speed:      proxySpeed,
+				Filter:     proxyFilter,
 			},
 		}
 		c.String(200, sip002Sub.Provide())
 	})
 	router.GET("/trojan/sub", func(c *gin.Context) {
+		proxyCountry := c.DefaultQuery("c", "")
+		proxyNotCountry := c.DefaultQuery("nc", "")
+		proxySpeed := c.DefaultQuery("speed", "")
+		proxyFilter := c.DefaultQuery("filter", "")
 		proxies := appcache.GetProxies("proxies")
 		trojanSub := provider.TrojanSub{
 			Base: provider.Base{
-				Proxies: &proxies,
-				Types:   "trojan",
+				Proxies:    &proxies,
+				Types:      "trojan",
+				Country:    proxyCountry,
+				NotCountry: proxyNotCountry,
+				Speed:      proxySpeed,
+				Filter:     proxyFilter,
 			},
 		}
 		c.String(200, trojanSub.Provide())

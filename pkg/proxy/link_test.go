@@ -3,6 +3,7 @@ package proxy
 import (
 	"fmt"
 	"github.com/Sansui233/proxypool/pkg/tool"
+	"github.com/ghodss/yaml"
 	"testing"
 )
 
@@ -79,4 +80,23 @@ func TestNewVmessParser(t *testing.T) {
 	}
 	vmessJson, err := mapStrInter2VmessLinkJson(jsonMap)
 	fmt.Println(vmessJson)
+}
+
+func TestSSRClashYaml(t *testing.T) {
+	str := "{\"name\":\"JP_609\",\"server\":\"13.231.143.248\",\"ip\":\"13.231.143.248\",\"outip\":\"\",\"port\":857,\"type\":\"ssr\",\"country\":\"JP\",\"flag\":\"🇯🇵\",\"usable\":true,\"delay\":847,\"Download\":0,\"Upload\":0,\"password\":\"CF5IKQ\",\"cipher\":\"chacha20-ietf\",\"protocol\":\"auth_aes128_sha1\",\"protocol-param\":\"45063:tyaGuO\",\"obfs\":\"tls1.2_ticket_auth\",\"obfs-param\":\"ffb1945063.microsoft.com\",\"group\":\"proxycrawler-clash\"}"
+	var ssr ShadowsocksR
+	err := yaml.Unmarshal([]byte(str), &ssr)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(ssr)
+	fmt.Println(ssr.Link())
+	fmt.Println(ssr.ToClash())
+	ssrp, err := ParseSSRLink(ssr.Link())
+	if err != nil {
+		t.Error(err)
+	}
+	fmt.Println(ssrp)
+	fmt.Println(ssrp.ToClash())
+
 }

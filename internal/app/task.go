@@ -1,16 +1,17 @@
 package app
 
 import (
+	"fmt"
 	"github.com/Sansui233/proxypool/config"
-	"github.com/Sansui233/proxypool/log"
-	"github.com/Sansui233/proxypool/pkg/healthcheck"
-	"sync"
-	"time"
-
 	"github.com/Sansui233/proxypool/internal/cache"
 	"github.com/Sansui233/proxypool/internal/database"
+	"github.com/Sansui233/proxypool/log"
+	"github.com/Sansui233/proxypool/pkg/geoIp"
+	"github.com/Sansui233/proxypool/pkg/healthcheck"
 	"github.com/Sansui233/proxypool/pkg/provider"
 	"github.com/Sansui233/proxypool/pkg/proxy"
+	"sync"
+	"time"
 )
 
 var location, _ = time.LoadLocation("PRC")
@@ -48,6 +49,7 @@ func CrawlGo() {
 		}
 	}
 
+	proxies.NameClear()
 	proxies = proxies.Derive()
 	log.Infoln("CrawlGo unique proxy count: %d", len(proxies))
 
@@ -87,8 +89,25 @@ func CrawlGo() {
 	log.Infoln("CrawlGo clash usable proxy count: %d", len(proxies))
 
 	// 重命名节点名称为类似US_01的格式，并按国家排序
-	proxies.NameSetCounrty().Sort().NameAddIndex()
+	proxies.NameAddCounrty().Sort()
 	log.Infoln("Proxy rename DONE!")
+
+	// 中转检测并命名
+	healthcheck.RelayCheck(proxies)
+	for i, _ := range proxies {
+		if s, ok := healthcheck.ProxyStats.Find(proxies[i]); ok {
+			if s.Relay == true {
+				_, c, e := geoIp.GeoIpDB.Find(s.OutIp)
+				if e == nil {
+					proxies[i].SetName(fmt.Sprintf("Relay_%s-%s", proxies[i].BaseInfo().Name, c))
+				}
+			} else if s.Pool == true {
+				proxies[i].SetName(fmt.Sprintf("Pool_%s", proxies[i].BaseInfo().Name))
+			}
+		}
+	}
+
+	proxies.NameAddIndex()
 
 	// 可用节点存储
 	cache.SetProxies("proxies", proxies)

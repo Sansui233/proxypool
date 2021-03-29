@@ -7,6 +7,9 @@ type Stat struct {
 	Speed    float64
 	Delay    uint16
 	ReqCount uint16
+	Relay    bool
+	Pool     bool
+	OutIp    string
 	Id       string
 }
 
@@ -32,6 +35,11 @@ func (ps *Stat) UpdatePSSpeed(speed float64) {
 // Update delay for a Stat
 func (ps *Stat) UpdatePSDelay(delay uint16) {
 	ps.Delay = delay
+}
+
+// Update out ip for a Stat
+func (ps *Stat) UpdatePSOutIp(outIp string) {
+	ps.OutIp = outIp
 }
 
 // Count + 1 for a Stat

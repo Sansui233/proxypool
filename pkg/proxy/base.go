@@ -3,6 +3,7 @@ package proxy
 import (
 	"encoding/json"
 	"errors"
+	"github.com/Sansui233/proxypool/pkg/geoIp"
 	"strings"
 )
 
@@ -32,6 +33,10 @@ func (b *Base) SetName(name string) {
 
 func (b *Base) AddToName(name string) {
 	b.Name = b.Name + name
+}
+
+func (b *Base) AddBeforeName(name string) {
+	b.Name = name + b.Name
 }
 
 // SetIP() to a proxy
@@ -89,7 +94,7 @@ func ParseProxyFromLink(link string) (p Proxy, err error) {
 	if err != nil || p == nil {
 		return nil, errors.New("link parse failed")
 	}
-	_, country, err := geoIp.Find(p.BaseInfo().Server) // IP库不准
+	_, country, err := geoIp.GeoIpDB.Find(p.BaseInfo().Server) // IP库不准
 	if err != nil {
 		country = "🏁 ZZ"
 	}

@@ -30,9 +30,9 @@
 
 ## 安装
 
-以下四选一。
+以下五选一。
 
-### 使用Heroku
+### 1. 使用Heroku
 
 点击按钮进入部署页面，填写基本信息然后运行
 
@@ -47,7 +47,13 @@
 > 因为爬虫程序需要持续运行，所以至少选择 $7/月 的配置
 > 免费配置长时间无人访问会被heroku强制停止
 
-### 从源码编译
+### 2. 使用[fly.io](https://fly.io)
+
+> 注册fly.io需要绑定银行卡，支持银联借记卡。同时使用fly.io主要通过命令行工具flyctl，详情到[fly.io](https://fly.io)官网了解。
+
+下载仓库源代码，修改 `fly.toml` 中的app与domain。在终端使用 `flyctl deploy` 部署即可。
+
+### 3. 从源码编译
 
 需要安装Golang 
 
@@ -65,14 +71,14 @@ $ go run main.go -c ./config/config.yaml
 make
 ```
 
-### 下载预编译程序
+### 4. 下载预编译程序
 
 从这里下载预编译好的程序 [release](https://github.com/Sansui233/proxypool/releases)。
 
-### 使用docker
+### 5. 使用docker
 
 ```sh
-docker pull docker.pkg.github.com/Sansui233/proxypool/proxypool:latest
+docker pull ghcr.io/sansui233/proxypool:latest
 ```
 
 ## 使用

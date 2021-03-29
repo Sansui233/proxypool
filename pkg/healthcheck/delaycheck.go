@@ -30,7 +30,7 @@ func CleanBadProxiesWithGrpool(proxies []proxy.Proxy) (cproxies []proxy.Proxy) {
 			pool.JobQueue <- func() {
 				defer pool.JobDone()
 				delay, err := testDelay(pp)
-				if err == nil {
+				if err == nil && delay != 0 {
 					m.Lock()
 					if ps, ok := ProxyStats.Find(pp); ok {
 						ps.UpdatePSDelay(delay)
@@ -78,6 +78,7 @@ func CleanBadProxiesWithGrpool(proxies []proxy.Proxy) (cproxies []proxy.Proxy) {
 	}
 }
 
+// Return 0 for error
 func testDelay(p proxy.Proxy) (delay uint16, err error) {
 	pmap := make(map[string]interface{})
 	err = json.Unmarshal([]byte(p.String()), &pmap)
@@ -96,16 +97,16 @@ func testDelay(p proxy.Proxy) (delay uint16, err error) {
 	clashProxy, err := outbound.ParseProxy(pmap)
 	if err != nil {
 		fmt.Println(err.Error())
-		return
+		return 0, err
 	}
 
 	sTime := time.Now()
 	err = HTTPHeadViaProxy(clashProxy, "http://www.gstatic.com/generate_204")
 	if err != nil {
-		return
+		return 0, err
 	}
 	fTime := time.Now()
 	delay = uint16(fTime.Sub(sTime) / time.Millisecond)
 
-	return delay, err
+	return delay, nil
 }
