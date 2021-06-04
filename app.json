@@ -1,10 +1,10 @@
 {
   "name": "proxypool",
   "description": "自动抓取tg频道、订阅地址、公开互联网上的ss、ssr、vmess节点信息，聚合去重测试可用性后提供节点列表",
-  "website": "https://proxy.tgbot.co/",
-  "repository": "https://github.com/zu1k/proxypool",
+  "website": "https://proxypoolss.herokuapp.com/",
+  "repository": "https://github.com/Sansui233/proxypool",
   "success_url": "/",
-  "logo": "https://raw.githubusercontent.com/zu1k/proxypool/heroku/assets/proxy.jpg",
+  "logo": "https://raw.githubusercontent.com/Sansui233/proxypool/heroku/assets/proxy.jpg",
   "keywords": ["golang", "ss", "ssr", "vmess", "shadowsocks", "shadowsocksr", "trojan"],
   "env": {
     "CONFIG_FILE": {

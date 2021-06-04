@@ -2,20 +2,24 @@ package getter
 
 import (
 	"errors"
-	"strings"
 	"sync"
 
-	"github.com/zu1k/proxypool/pkg/proxy"
-	"github.com/zu1k/proxypool/pkg/tool"
+	"github.com/Sansui233/proxypool/pkg/proxy"
+	"github.com/Sansui233/proxypool/pkg/tool"
 )
 
+// functions for getters
 type Getter interface {
 	Get() proxy.ProxyList
-	Get2Chan(pc chan proxy.Proxy, wg *sync.WaitGroup)
+	Get2Chan(pc chan proxy.Proxy)
+	Get2ChanWG(pc chan proxy.Proxy, wg *sync.WaitGroup)
 }
 
+// function type that creates getters
 type creator func(options tool.Options) (getter Getter, err error)
 
+// map str sourceType -> func creating getters,
+// registered in package init()
 var creatorMap = make(map[string]creator)
 
 func Register(sourceType string, c creator) {
@@ -30,28 +34,24 @@ func NewGetter(sourceType string, options tool.Options) (getter Getter, err erro
 	return nil, ErrorCreaterNotSupported
 }
 
-func String2Proxy(link string) proxy.Proxy {
-	var err error
-	var data proxy.Proxy
-	if strings.HasPrefix(link, "ssr://") {
-		data, err = proxy.ParseSSRLink(link)
-	} else if strings.HasPrefix(link, "vmess://") {
-		data, err = proxy.ParseVmessLink(link)
-	} else if strings.HasPrefix(link, "ss://") {
-		data, err = proxy.ParseSSLink(link)
-	} else if strings.HasPrefix(link, "trojan://") {
-		data, err = proxy.ParseTrojanLink(link)
-	}
-	if err != nil {
-		return nil
-	}
-	return data
-}
-
 func StringArray2ProxyArray(origin []string) proxy.ProxyList {
 	results := make(proxy.ProxyList, 0)
 	for _, link := range origin {
-		results = append(results, String2Proxy(link))
+		p, err := proxy.ParseProxyFromLink(link)
+		if err == nil && p != nil {
+			results = append(results, p)
+		}
+	}
+	return results
+}
+
+func ClashProxy2ProxyArray(origin []map[string]interface{}) proxy.ProxyList {
+	results := make(proxy.ProxyList, 0, len(origin))
+	for _, pjson := range origin {
+		p, err := proxy.ParseProxyFromClashProxy(pjson)
+		if err == nil && p != nil {
+			results = append(results, p)
+		}
 	}
 	return results
 }

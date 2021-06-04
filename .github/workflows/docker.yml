@@ -1,6 +1,10 @@
 name: docker
 
-on: [push, pull_request]
+on:
+  push:
+    tags-ignore:
+      - v*-*-*
+  pull_request:
 
 jobs:
   build:
@@ -9,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code into the Go module directory
-        uses: actions/checkout@v2.3.2
+        uses: actions/checkout@v2.3.4
 
       - name: Build and push Docker images
-        uses: docker/build-push-action@v1.1.0
+        uses: docker/build-push-action@v2.2.2
         with:
-          username: zu1k
+          username: sansui233
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: zu1k/proxypool/proxypool
+          repository: sansui233/proxypool/proxypool
           tag_with_ref: true

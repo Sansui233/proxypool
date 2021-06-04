@@ -4,6 +4,7 @@ import (
 	"encoding/base64"
 )
 
+// Base64DecodeString decodes base64 string to readable string
 func Base64DecodeString(src string) (dst string, err error) {
 	if src == "" {
 		return "", nil

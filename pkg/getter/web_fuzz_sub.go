@@ -1,13 +1,13 @@
 package getter
 
 import (
+	"github.com/Sansui233/proxypool/log"
 	"io/ioutil"
-	"log"
 	"regexp"
 	"sync"
 
-	"github.com/zu1k/proxypool/pkg/proxy"
-	"github.com/zu1k/proxypool/pkg/tool"
+	"github.com/Sansui233/proxypool/pkg/proxy"
+	"github.com/Sansui233/proxypool/pkg/tool"
 )
 
 func init() {
@@ -32,15 +32,27 @@ func (w *WebFuzzSub) Get() proxy.ProxyList {
 	subUrls := urlRe.FindAllString(text, -1)
 	result := make(proxy.ProxyList, 0)
 	for _, url := range subUrls {
-		result = append(result, (&Subscribe{Url: url}).Get()...)
+		newResult := (&Subscribe{Url: url}).Get()
+		if len(newResult) == 0 {
+			newResult = (&Clash{Url: url}).Get()
+		}
+		result = result.UniqAppendProxyList(newResult)
 	}
 	return result
 }
 
-func (w *WebFuzzSub) Get2Chan(pc chan proxy.Proxy, wg *sync.WaitGroup) {
+func (w *WebFuzzSub) Get2ChanWG(pc chan proxy.Proxy, wg *sync.WaitGroup) {
 	defer wg.Done()
 	nodes := w.Get()
-	log.Printf("STATISTIC: WebFuzzSub\tcount=%d\turl=%s\n", len(nodes), w.Url)
+	log.Infoln("STATISTIC: WebFuzzSub\tcount=%d\turl=%s\n", len(nodes), w.Url)
+	for _, node := range nodes {
+		pc <- node
+	}
+}
+
+func (w *WebFuzzSub) Get2Chan(pc chan proxy.Proxy) {
+	nodes := w.Get()
+	log.Infoln("STATISTIC: WebFuzzSub\tcount=%d\turl=%s\n", len(nodes), w.Url)
 	for _, node := range nodes {
 		pc <- node
 	}

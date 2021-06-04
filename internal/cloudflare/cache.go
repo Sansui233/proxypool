@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/Sansui233/proxypool/config"
 	"github.com/cloudflare/cloudflare-go"
-	"github.com/zu1k/proxypool/config"
 )
 
 func test() {

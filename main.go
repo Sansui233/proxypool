@@ -2,28 +2,33 @@ package main
 
 import (
 	"flag"
-	"fmt"
-	"net/http"
 	_ "net/http/pprof"
 	"os"
 
-	"github.com/zu1k/proxypool/api"
-	"github.com/zu1k/proxypool/internal/app"
-	"github.com/zu1k/proxypool/internal/cron"
-	"github.com/zu1k/proxypool/internal/database"
-	"github.com/zu1k/proxypool/pkg/proxy"
+	"github.com/Sansui233/proxypool/api"
+	"github.com/Sansui233/proxypool/internal/app"
+	"github.com/Sansui233/proxypool/internal/cron"
+	"github.com/Sansui233/proxypool/internal/database"
+	"github.com/Sansui233/proxypool/log"
+	"github.com/Sansui233/proxypool/pkg/proxy"
 )
 
 var configFilePath = ""
+var debugMode = false
 
 func main() {
-	go func() {
-		http.ListenAndServe("0.0.0.0:6060", nil)
-	}()
+	//go func() {
+	//	http.ListenAndServe("0.0.0.0:6060", nil)
+	//}()
 
 	flag.StringVar(&configFilePath, "c", "", "path to config file: config.yaml")
+	flag.BoolVar(&debugMode, "d", false, "debug output")
 	flag.Parse()
 
+	log.SetLevel(log.INFO)
+	if debugMode {
+		log.SetLevel(log.DEBUG)
+	}
 	if configFilePath == "" {
 		configFilePath = os.Getenv("CONFIG_FILE")
 	}
@@ -32,13 +37,19 @@ func main() {
 	}
 	err := app.InitConfigAndGetters(configFilePath)
 	if err != nil {
+		log.Errorln("Configuration init error: %s", err.Error())
 		panic(err)
 	}
 
 	database.InitTables()
-	proxy.InitGeoIpDB()
-	fmt.Println("Do the first crawl...")
-	go app.CrawlGo()
-	go cron.Cron()
-	api.Run()
+	// init GeoIp db reader and map between emoji's and countries
+	// return: struct geoIp (dbreader, emojimap)
+	err = proxy.InitGeoIpDB()
+	if err != nil {
+		os.Exit(1)
+	}
+	log.Infoln("Do the first crawl...")
+	go app.CrawlGo() // 抓取主程序
+	go cron.Cron()   // 定时运行
+	api.Run()        // Web Serve
 }

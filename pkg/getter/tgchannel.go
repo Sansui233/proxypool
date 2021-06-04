@@ -2,12 +2,14 @@ package getter
 
 import (
 	"fmt"
-	"log"
+	"github.com/Sansui233/proxypool/log"
+	"io/ioutil"
+	"strings"
 	"sync"
 
+	"github.com/Sansui233/proxypool/pkg/proxy"
+	"github.com/Sansui233/proxypool/pkg/tool"
 	"github.com/gocolly/colly"
-	"github.com/zu1k/proxypool/pkg/proxy"
-	"github.com/zu1k/proxypool/pkg/tool"
 )
 
 func init() {
@@ -19,6 +21,7 @@ type TGChannelGetter struct {
 	NumNeeded int
 	results   []string
 	Url       string
+	apiUrl    string
 }
 
 func NewTGChannelGetter(options tool.Options) (getter Getter, err error) {
@@ -44,6 +47,7 @@ func NewTGChannelGetter(options tool.Options) (getter Getter, err error) {
 			c:         tool.GetColly(),
 			NumNeeded: t,
 			Url:       "https://t.me/s/" + url,
+			apiUrl:    "https://tg.i-c-a.su/rss/" + url,
 		}, nil
 	}
 	return nil, ErrorUrlNotFound
@@ -74,13 +78,41 @@ func (g *TGChannelGetter) Get() proxy.ProxyList {
 	if err != nil {
 		_ = fmt.Errorf("%s", err.Error())
 	}
-	return append(result, StringArray2ProxyArray(g.results)...)
+	result = append(result, StringArray2ProxyArray(g.results)...)
+
+	// 获取文件(api需要维护)
+	resp, err := tool.GetHttpClient().Get(g.apiUrl)
+	if err != nil {
+		return result
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	items := strings.Split(string(body), "\n")
+	for _, s := range items {
+		if strings.Contains(s, "enclosure url") { // get to xml node
+			elements := strings.Split(s, "\"")
+			for _, e := range elements {
+				if strings.Contains(e, "https://") {
+					// Webfuzz的可能性比较大，也有可能是订阅链接，为了不拖慢运行速度不写了
+					result = append(result, (&WebFuzz{Url: e}).Get()...)
+				}
+			}
+		}
+	}
+	return result
 }
 
-func (g *TGChannelGetter) Get2Chan(pc chan proxy.Proxy, wg *sync.WaitGroup) {
+func (g *TGChannelGetter) Get2ChanWG(pc chan proxy.Proxy, wg *sync.WaitGroup) {
 	defer wg.Done()
 	nodes := g.Get()
-	log.Printf("STATISTIC: TGChannel\tcount=%d\turl=%s\n", len(nodes), g.Url)
+	log.Infoln("STATISTIC: TGChannel\tcount=%d\turl=%s\n", len(nodes), g.Url)
+	for _, node := range nodes {
+		pc <- node
+	}
+}
+func (g *TGChannelGetter) Get2Chan(pc chan proxy.Proxy) {
+	nodes := g.Get()
+	log.Infoln("STATISTIC: TGChannel\tcount=%d\turl=%s\n", len(nodes), g.Url)
 	for _, node := range nodes {
 		pc <- node
 	}

@@ -1,17 +1,18 @@
 package provider
 
 import (
+	"github.com/Sansui233/proxypool/pkg/tool"
 	"strings"
 
-	"github.com/zu1k/proxypool/pkg/tool"
-
-	"github.com/zu1k/proxypool/pkg/proxy"
+	"github.com/Sansui233/proxypool/pkg/proxy"
 )
 
+// Clash provides functions that make proxies support clash client
 type Clash struct {
 	Base
 }
 
+// CleanProxies cleans unsupported proxy type of clash
 func (c Clash) CleanProxies() (proxies proxy.ProxyList) {
 	proxies = make(proxy.ProxyList, 0)
 	for _, p := range *c.Proxies {
@@ -22,6 +23,7 @@ func (c Clash) CleanProxies() (proxies proxy.ProxyList) {
 	return
 }
 
+// Provide of clash generates providers for clash configuration
 func (c Clash) Provide() string {
 	c.preFilter()
 
@@ -32,9 +34,13 @@ func (c Clash) Provide() string {
 			resultBuilder.WriteString(p.ToClash() + "\n")
 		}
 	}
+	if resultBuilder.Len() == 9 { //如果没有proxy，添加无效的NULL节点，防止Clash对空节点的Provider报错
+		resultBuilder.WriteString("- {\"name\":\"NULL\",\"server\":\"NULL\",\"port\":11708,\"type\":\"ssr\",\"country\":\"NULL\",\"password\":\"sEscPBiAD9K$\\u0026@79\",\"cipher\":\"aes-256-cfb\",\"protocol\":\"origin\",\"protocol_param\":\"NULL\",\"obfs\":\"http_simple\"}")
+	}
 	return resultBuilder.String()
 }
 
+// 检查单个节点的加密方式、协议类型与混淆是否是Clash所支持的
 func checkClashSupport(p proxy.Proxy) bool {
 	switch p.TypeName() {
 	case "ssr":

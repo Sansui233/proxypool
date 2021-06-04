@@ -3,8 +3,8 @@ package cache
 import (
 	"time"
 
+	"github.com/Sansui233/proxypool/pkg/proxy"
 	"github.com/patrickmn/go-cache"
-	"github.com/zu1k/proxypool/pkg/proxy"
 )
 
 var c = cache.New(cache.NoExpiration, 10*time.Minute)
@@ -12,7 +12,7 @@ var c = cache.New(cache.NoExpiration, 10*time.Minute)
 func GetProxies(key string) proxy.ProxyList {
 	result, found := c.Get(key)
 	if found {
-		return result.(proxy.ProxyList)
+		return result.(proxy.ProxyList) //Get返回的是interface
 	}
 	return nil
 }

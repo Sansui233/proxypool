@@ -3,7 +3,6 @@ package proxy
 import (
 	"encoding/json"
 	"errors"
-	"math/rand"
 	"net"
 	"net/url"
 	"regexp"
@@ -138,15 +137,15 @@ func ParseTrojanLink(link string) (*Trojan, error) {
 
 	return &Trojan{
 		Base: Base{
-			Name:   strconv.Itoa(rand.Int()),
+			Name:   "",
 			Server: server,
 			Port:   port,
 			Type:   "trojan",
 		},
 		Password:       password,
 		ALPN:           alpn,
-		UDP:            true,
 		SNI:            host,
+		UDP:            true,
 		SkipCertVerify: true,
 	}, nil
 }

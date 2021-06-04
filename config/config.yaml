@@ -1,16 +1,33 @@
 # your domain
 domain: example.com
+port:                 # default 12580
 
-# database url
+# source list file
+source-files:
+  # use local file
+  - ./config/source.yaml
+  # use web file
+  # - https://example.com/config/source.yaml
+
+# ======= 可选项，留空使用default值  =======
+
+# postgresql database info
 database_url: ""
+
+# interval between each crawling
+crawl-interval:       # v0.5.x default 60 (minutes)
+crontime:             # v0.4.x default 60 (minutes). Deprecated in the newest version
+
+# speed test
+speedtest: false      # default false. Warning: this will consume large network resources.
+speedtest-interval:   # default 720 (min)
+connection:           # default 5. The number of speed test connections simultaneously
+timeout:              # default 10 (seconds).
+## active proxy speed test
+active-interval:      # default 60 (min)
+active-frequency:     # default 100 (requests per interval)
+active-max-number:    # default 100. If more than this number of active proxies, the extra will be deprecated by speed
 
 # cloudflare api
 cf_email: ""
 cf_key: ""
-
-# source definition file
-source-files:
-  # use local file
-  - source.yaml
-  # use web file
-  - https://example.com/source.yaml

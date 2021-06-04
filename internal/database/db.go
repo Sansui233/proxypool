@@ -1,10 +1,10 @@
 package database
 
 import (
-	"fmt"
+	"github.com/Sansui233/proxypool/log"
 	"os"
 
-	"github.com/zu1k/proxypool/config"
+	"github.com/Sansui233/proxypool/config"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -14,6 +14,7 @@ import (
 var DB *gorm.DB
 
 func connect() (err error) {
+	// localhost url
 	dsn := "user=proxypool password=proxypool dbname=proxypool port=5432 sslmode=disable TimeZone=Asia/Shanghai"
 	if url := config.Config.DatabaseUrl; url != "" {
 		dsn = url
@@ -25,7 +26,10 @@ func connect() (err error) {
 		Logger: logger.Default.LogMode(logger.Silent),
 	})
 	if err == nil {
-		fmt.Println("DB connect success: ", DB.Name())
+		log.Infoln("database: successfully connected to: %s", DB.Name())
+	} else {
+		DB = nil
+		log.Warnln("database connection info: %s \n\t\tUse cache to store proxies", err.Error())
 	}
 	return
 }

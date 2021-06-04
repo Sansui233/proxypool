@@ -2,12 +2,12 @@ package getter
 
 import (
 	"encoding/json"
+	"github.com/Sansui233/proxypool/log"
 	"io/ioutil"
-	"log"
 	"sync"
 
-	"github.com/zu1k/proxypool/pkg/proxy"
-	"github.com/zu1k/proxypool/pkg/tool"
+	"github.com/Sansui233/proxypool/pkg/proxy"
+	"github.com/Sansui233/proxypool/pkg/tool"
 )
 
 func init() {
@@ -32,10 +32,18 @@ func (w *WebFreessrXyz) Get() proxy.ProxyList {
 	return results
 }
 
-func (w *WebFreessrXyz) Get2Chan(pc chan proxy.Proxy, wg *sync.WaitGroup) {
+func (w *WebFreessrXyz) Get2ChanWG(pc chan proxy.Proxy, wg *sync.WaitGroup) {
 	defer wg.Done()
 	nodes := w.Get()
-	log.Printf("STATISTIC: FreeSSRxyz\tcount=%d\turl=%s\n", len(nodes), "api.free-ssr.xyz")
+	log.Infoln("STATISTIC: FreeSSRxyz\tcount=%d\turl=%s\n", len(nodes), "api.free-ssr.xyz")
+	for _, node := range nodes {
+		pc <- node
+	}
+}
+
+func (w *WebFreessrXyz) Get2Chan(pc chan proxy.Proxy) {
+	nodes := w.Get()
+	log.Infoln("STATISTIC: FreeSSRxyz\tcount=%d\turl=%s\n", len(nodes), "api.free-ssr.xyz")
 	for _, node := range nodes {
 		pc <- node
 	}
@@ -63,7 +71,8 @@ func freessrxyzFetch(link string) proxy.ProxyList {
 
 	result := make([]string, 0)
 	for _, node := range ssrs {
-		result = append(result, node.Url)
+		u := node.Url[0:15] + node.Url[16:]
+		result = append(result, u)
 	}
 
 	return StringArray2ProxyArray(result)
